@@ -1,0 +1,42 @@
+#!groovy
+
+pipeline {
+    agent any
+    stages {
+        stage('clean') {
+            steps {
+                deleteDir()
+            }
+        }
+
+        stage('pull from GitHub') {
+            steps {
+                git "https://github.com/tbatty7/simplespringbootapp.git"
+            }
+        }
+        stage('create html file') {
+            steps {
+                echo "Hello > myFile.html"
+            }
+        }
+        stage('use shell and cmd commands') {
+            steps {
+                sh 'pwd'
+                bat 'dir'
+            }
+        }
+        stage('run microtests') {
+            steps {
+                sh './gradlew test'
+            }
+        }
+    }
+    post {
+        always {
+            archiveArtifacts artifacts: 'test1.html'
+        }
+        failure {
+            emailext body: 'the build failed :(', subject: 'from Jenkins - first pipeline', to: 'webartisantim@gmail.com'
+        }
+    }
+}
