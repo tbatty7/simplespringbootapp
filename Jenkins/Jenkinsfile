@@ -30,6 +30,13 @@ pipeline {
                 sh './gradlew test'
             }
         }
+        stage('credential variables') {
+	    steps {
+	        withCredentials([usernamePassword(credentialsId: 'Example', passwordVariable: 'myPassword', usernameVariable: 'userName')]) {
+		    echo userName
+		}
+	    }
+	}
     }
     post {
         always {
