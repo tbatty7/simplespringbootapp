@@ -34,6 +34,8 @@ pipeline {
 	    steps {
 	        withCredentials([usernamePassword(credentialsId: 'Example', passwordVariable: 'myPassword', usernameVariable: 'userName')]) {
 		    echo userName
+		    sh 'echo $myPassword'
+                    echo "password is $myPassword"
 		}
 	    }
 	}
