@@ -42,12 +42,7 @@ pipeline {
     }
     post {
 	always {
-		script {
-			archiveArtifacts 'test1.html'
-		}
-        }
-        failure {
-            	emailext body: 'the build failed :(', subject: 'from Jenkins - first pipeline', to: 'webartisantim@gmail.com'
+		archive 'test1.html'
         }
     }
 }
