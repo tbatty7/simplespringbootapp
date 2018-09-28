@@ -42,7 +42,7 @@ pipeline {
     }
     post {
 	always {
-		echo 'test'	
+		archive "test1.html,test2.html"
         }
     }
 }
