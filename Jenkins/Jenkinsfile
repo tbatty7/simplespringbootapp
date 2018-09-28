@@ -42,11 +42,7 @@ pipeline {
     }
     post {
 	always {
-		node {
-			steps {
-			archive "test1.html"
-			}
-		}	
+		echo 'test'	
         }
     }
 }
