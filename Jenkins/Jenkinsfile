@@ -41,13 +41,13 @@ pipeline {
 	}
     }
     post {
-	    node { 
-		always {
-            		archiveArtifacts 'test1.html'
-        	}
-        	failure {
-            		emailext body: 'the build failed :(', subject: 'from Jenkins - first pipeline', to: 'webartisantim@gmail.com'
-        	}
-	    }
+	always {
+		node {
+			archiveArtifacts 'test1.html'
+		}
+        }
+        failure {
+            	emailext body: 'the build failed :(', subject: 'from Jenkins - first pipeline', to: 'webartisantim@gmail.com'
+        }
     }
 }
